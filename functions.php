@@ -1,4 +1,11 @@
 <?php
+
+/*
+DISABLE GUTENBERG
+Disable Gutenberg with Code
+*/
+add_filter('use_block_editor_for_post', '__return_false', 10);
+
 /*
 DISABLE WPAUTOP
 Wpautop is the name of the function that automatically encloses double-line breaks with a <p> and </ p>. WordPress uses this feature in all post types (posts, pages and custom post types)- for both content and shortcode generated texts. Hence, some of the editing jobs such as working with a shortcode-driven grid system in the WYSIWYG editor can be quite problematic.
