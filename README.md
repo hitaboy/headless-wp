@@ -26,7 +26,8 @@ Meant to don't execute any wp or ph function. Just a plain html.
 
 ```
 ## functions.php
-Disable Gutenberg Editor
+
+### Disable Gutenberg Editor
 ```
 add_filter('use_block_editor_for_post', '__return_false', 10);
 ```
@@ -37,6 +38,7 @@ The wpautop filter can be disabled with this line.
 remove_filter( 'the_content', 'wpautop' );
 ```
 
+### Adding ACF fields to the WP REST API
 If using ACF plugin and having the need to get the fields trought the WP REST API, use this code that automatically expose all the ACF fields to the Wordpress REST API in Pages and in your custom post types.
 ```
 function create_ACF_meta_in_REST() {
@@ -62,4 +64,25 @@ function expose_ACF_fields( $object ) {
 }
 
 add_action( 'rest_api_init', 'create_ACF_meta_in_REST' );
+```
+
+### Custom GET endpoint
+Add custom GET endpoints to the WP REST API
+```
+add_action( 'rest_api_init', function() {
+  register_rest_route( 'my/v1', '/projects', [
+    'methods' => 'GET',
+    'callback' => 'get_projects',
+  ] );
+} );
+
+// Get recent projects
+function get_projects( $params ) {
+  $projects =  [
+    'project_1' => 'project_1',
+    'project_2' => 'project_2'
+  ];
+
+  return $projects;
+}
 ```

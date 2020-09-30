@@ -42,4 +42,27 @@ function expose_ACF_fields( $object ) {
 
 add_action( 'rest_api_init', 'create_ACF_meta_in_REST' );
 
+/*
+Custom GET endpoint
+Add custom GET endpoints to the WP REST API
+*/
+
+add_action( 'rest_api_init', function() {
+  register_rest_route( 'my/v1', '/projects', [
+    'methods' => 'GET',
+    'callback' => 'get_projects',
+  ] );
+} );
+
+// Get recent projects
+function get_projects( $params ) {
+  $projects =  [
+    'project_1' => 'project_1',
+    'project_2' => 'project_2'
+  ];
+
+  return $projects;
+}
+
+
 ?>
