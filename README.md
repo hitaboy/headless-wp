@@ -86,3 +86,13 @@ function get_projects( $params ) {
   return $projects;
 }
 ```
+
+### Enabled SVG Support for WordPress
+You’ll be able to upload SVG images to your Media Library. There, you can view and interact with them just like with other image file types.
+```
+function cc_mime_types( $mimes ){
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter( 'upload_mimes', 'cc_mime_types' );
+```
